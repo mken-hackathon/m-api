@@ -1,0 +1,13 @@
+version: "2"
+services:
+  deploy:
+    build: ./tools/api-deploy
+    image: qrk-api-deploy
+    volumes:
+    - ".:/home/lambda"
+    - "~/.aws:/root/.aws"
+    environment:
+    - "AWS_PROFILE=${AWS_PROFILE}"
+    - "NODE_ENV=${NODE_ENV}"
+    working_dir: /home/lambda
+    command: sls-deploy.sh

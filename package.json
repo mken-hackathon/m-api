@@ -1,0 +1,53 @@
+{
+  "name": "mken-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "NODE_ENV=LOCALDEV nyc mocha",
+    "test:coverage": "run-s clean test coverage",
+    "clean": "del coverage .nyc_output",
+    "coverage": "nyc report --reporter=html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.mti-fintech.info:QR-koza/qrk-api.git"
+  },
+  "engines": {
+    "node": "^6.10"
+  },
+  "author": "",
+  "private": true,
+  "license": "ISC",
+  "dependencies": {
+    "co": "4.6.0",
+    "config": "^1.24.0",
+    "debug": "^2.2.0",
+    "jsonschema": "1.1.0",
+    "moment": "2.17.1",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "2.7.26",
+    "co-mocha": "1.1.3",
+    "co-sleep": "0.0.1",
+    "commander": "2.9.0",
+    "del-cli": "0.2.0",
+    "eslint": "^3.14.1",
+    "eslint-plugin-node": "^3.0.5",
+    "intelli-espower-loader": "^1.0.1",
+    "lodash.times": "4.3.2",
+    "mocha": "^3.0.2",
+    "npm-run-all": "4.0.1",
+    "nyc": "10.1.2",
+    "power-assert": "^1.4.1",
+    "serverless-offline": "^3.14.2",
+    "serverless-enable-api-logs": "^2.0.0",
+    "serverless-remove-cf-outputs-plugin": "github:brigad/serverless-remove-cf-outputs-plugin",
+    "simple-mock": "0.7.3"
+  },
+  "directories": {
+    "test": "test"
+  }
+}

@@ -1,0 +1,57 @@
+service: ${self:custom.system}-BackendAPI
+frameworkVersion: "=1.21.1"
+
+plugins:
+  - serverless-enable-api-logs
+  - serverless-offline
+
+custom:
+  system: "Team2-Mken"
+  stage: ${opt:stage, self:provider.stage}
+provider:
+  name: aws
+  stackTags:
+    Team: Team2
+    System: ${self:custom.system}
+    Stage: ${self:custom.stage}
+  runtime: nodejs6.10
+  memorySize: 512
+  timeout: 10
+  stage: DEV ##コマンドで指定しなかった場合のデフォルト
+  region: ap-northeast-1
+  environment:
+    NODE_ENV: ${self:custom.stage}
+    DEBUG: "MKEN:*"
+    TZ: "Asia/Tokyo"
+  # Lambda function's IAM Role
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:Query"
+        - "dynamodb:Scan"
+        - "dynamodb:GetItem"
+        - "dynamodb:PutItem"
+        - "dynamodb:UpdateItem"
+        - "dynamodb:DeleteItem"
+        - "dynamodb:BatchWriteItem"
+      Resource: "arn:aws:dynamodb:ap-northeast-1:*:table/${self:custom.system}.${self:custom.stage}.*"
+package:
+  exclude:
+  - api-def/**
+  - tools/**
+  - test/**
+  - trial-data/**
+  - docs/**
+  - .nyc_output
+  - coverage
+  - .git/**
+
+functions:
+  test:
+    handler: src/handler/test.get
+    events:
+      - http: 
+          path: test
+          method: GET
+          cors: true
+resources: ${file(./resources.yml)}
