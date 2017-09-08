@@ -6,7 +6,7 @@ const DynamoDB = new Common.AWS.DynamoDB.DocumentClient();
 const Tables = require("./tables");
 
 module.exports = {
-  put, get, getAll
+  put, get, getAll, setButtonName
 };
 
 function* put(bid, presetActs) {
@@ -15,6 +15,16 @@ function* put(bid, presetActs) {
     Item: {
       bid: bid,
       activities: presetActs
+    }
+  }).promise();
+}
+
+function* setButtonName(bid, name) {
+  return yield DynamoDB.put({
+    TableName: Tables.Presets,
+    Item: {
+      bid: bid,
+      btnname: name
     }
   }).promise();
 }

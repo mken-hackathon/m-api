@@ -69,3 +69,20 @@ module.exports.get = handlers(function* (ev) {
     }
   })
 });
+
+module.exports.setName = handlers(function* (ev) {
+  ev.body = JSON.parse(ev.body);
+  const bid = ev.pathParameters.bid;
+  yield Db.Presets.setButtonName(bid, ev.body.btnname);
+
+  return new HttpResponse({
+    statusCode: 200,
+    body: { 
+      message: "OK",
+      button: {
+        bid,
+        btnname: ev.body.btnname
+      }
+    }
+  })  
+});

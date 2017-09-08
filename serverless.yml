@@ -75,5 +75,12 @@ functions:
           path: buttons
           method: GET
           cors: true
+  setButtonName:
+    handler: src/handler/buttonPreset.setName
+    events:
+      - http:
+          path: buttons/{bid}/name
+          method: PATCH
+          cors: true
 
 resources: ${file(./resources.yml)}
