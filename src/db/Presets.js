@@ -10,12 +10,11 @@ module.exports = {
 };
 
 function* put(bid, presetActs) {
-  return yield DynamoDB.put({
+  return yield DynamoDB.update({
     TableName: Tables.Presets,
-    Item: {
-      bid: bid,
-      activities: presetActs
-    }
+    Key: { bid },
+    UpdateExpression: "set activities = :newval",
+    ExpressionAttributeValues: { ":newval": presetActs }
   }).promise();
 }
 
