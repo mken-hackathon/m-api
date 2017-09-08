@@ -10,7 +10,7 @@ module.exports = {
   gets
 };
 
-function* puts(acts) {
+function* puts(bid, acts) {
   const reqItems = {
     RequestItems: {
       [Tables.Activities] : acts.map(act => {
@@ -18,6 +18,7 @@ function* puts(acts) {
           PutRequest: {
             Item: {
               actid: uuid.v1(),
+              bid: bid,
               timestamp: new Date().getTime(),
               action: act.action,
               amount: act.amount

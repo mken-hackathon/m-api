@@ -31,7 +31,7 @@ module.exports.post = handlers(function* (ev) {
   if(!preset) {
     throw new Common.Error.NotFoundError("button not found");
   }
-  yield Db.Activities.puts(preset.activities);
+  yield Db.Activities.puts(bid, preset.activities);
   return new HttpResponse({
     statusCode: 200,
     body: { 
