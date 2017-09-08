@@ -52,3 +52,20 @@ module.exports.put = handlers(function* (ev) {
     }
   })
 });
+
+module.exports.get = handlers(function* (ev) {
+  const r = yield Db.Presets.getAll();
+  const buttons = r.map(e => {
+    return {
+      bid: e.bid,
+      btnname: e.btnname
+    }
+  });
+  return new HttpResponse({
+    statusCode: 200,
+    body: {
+      message: "OK",
+      buttons: buttons
+    }
+  })
+});

@@ -68,5 +68,12 @@ functions:
           path: button/{bid}/preset
           method: PUT
           cors: true
+  getButtons:
+    handler: src/handler/buttonPreset.get
+    events:
+      - http:
+          path: buttons
+          method: GET
+          cors: true
 
 resources: ${file(./resources.yml)}
