@@ -47,11 +47,26 @@ package:
   - .git/**
 
 functions:
-  test:
-    handler: src/handler/test.get
+  buttonAction:
+    handler: src/handler/buttonAction.post
     events:
       - http: 
-          path: test
+          path: button/{bid}/activity
+          method: POST
+          cors: true
+  getActivities:
+    handler: src/handler/activities.get
+    events:
+      - http:
+          path: activities
           method: GET
           cors: true
+  putPresets:
+    handler: src/handler/buttonPreset.put
+    events:
+      - http:
+          path: button/{bid}/preset
+          method: PUT
+          cors: true
+
 resources: ${file(./resources.yml)}
