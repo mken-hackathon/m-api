@@ -1,0 +1,4 @@
+ --require intelli-espower-loader
+ --require co-mocha
+ --recursive
+ --timeout 5000

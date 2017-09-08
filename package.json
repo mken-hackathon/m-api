@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src",
-    "test": "NODE_ENV=LOCALDEV nyc mocha",
-    "test:coverage": "run-s clean test coverage",
-    "clean": "del coverage .nyc_output",
-    "coverage": "nyc report --reporter=html"
+    "test": "NODE_ENV=DEV mocha"
   },
   "repository": {
     "type": "git",
