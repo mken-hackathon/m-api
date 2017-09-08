@@ -17,7 +17,7 @@ function handlers(generatorFn) {
       Logger.debug(ev);
       return yield generatorFn(ev);
     })
-      .then(resut => {
+      .then(result => {
         if (result instanceof HttpResponse) {
           cb(null, result.toResponseObj());
         } else {
