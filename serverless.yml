@@ -68,8 +68,15 @@ functions:
           path: button/{bid}/preset
           method: PUT
           cors: true
+  getTheButton:
+    handler: src/handler/buttonPreset.findOne
+    events:
+      - http:
+          path: buttons/{bid}
+          method: GET
+          cors: true
   getButtons:
-    handler: src/handler/buttonPreset.get
+    handler: src/handler/buttonPreset.findAll
     events:
       - http:
           path: buttons

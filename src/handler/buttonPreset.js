@@ -53,7 +53,7 @@ module.exports.put = handlers(function* (ev) {
   })
 });
 
-module.exports.get = handlers(function* (ev) {
+module.exports.findAll = handlers(function* (ev) {
   const r = yield Db.Presets.getAll();
   const buttons = r.map(e => {
     return {
@@ -68,6 +68,19 @@ module.exports.get = handlers(function* (ev) {
       buttons: buttons
     }
   })
+});
+
+module.exports.findOne = handlers(function* (ev) {
+  const bid = ev.pathParameters.bid;
+  const r = yield Db.Presets.get(bid);
+
+  return new HttpResponse({
+    statusCode: 200,
+    body: { 
+      message: "OK",
+      button: r
+    }
+  })  
 });
 
 module.exports.setName = handlers(function* (ev) {
